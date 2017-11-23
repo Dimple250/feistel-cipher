@@ -17,7 +17,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
    void createMap();
-   void Chiper();
    void createTables();
    void createBlok(int);
 
@@ -46,6 +45,7 @@ private:
         QString Result;
 public slots:
     void saveCSV();
+    void Chiper();
 
 };
 

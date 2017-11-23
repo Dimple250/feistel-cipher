@@ -38,7 +38,7 @@ public:
     QLabel *label_2;
     QComboBox *comboBox;
     QTextEdit *textEdit_2;
-    QPushButton *pushButton;
+    QPushButton *Button_Chiper;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
@@ -56,14 +56,18 @@ public:
         QFont font;
         font.setFamily(QStringLiteral("Noto Sans"));
         MainWindow->setFont(font);
+        MainWindow->setStyleSheet(QStringLiteral("background-color: #454545;"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(10, 20, 331, 191));
+        textEdit->setStyleSheet(QStringLiteral("background-color: rgb(158, 158, 158);"));
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(420, 35, 113, 31));
+        lineEdit->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
+"border-color: rgb(186, 186, 186);"));
         lineEdit->setMaxLength(4);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
@@ -74,10 +78,12 @@ public:
         font1.setItalic(true);
         font1.setWeight(75);
         label->setFont(font1);
+        label->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(360, 99, 54, 17));
         label_2->setFont(font1);
+        label_2->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
         comboBox = new QComboBox(centralWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(420, 90, 111, 31));
@@ -87,20 +93,28 @@ public:
         font2.setItalic(false);
         font2.setWeight(75);
         comboBox->setFont(font2);
+        comboBox->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+"selection-color: rgb(255, 130, 41);"));
         textEdit_2 = new QTextEdit(centralWidget);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setGeometry(QRect(10, 280, 601, 231));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(10, 220, 141, 41));
+        textEdit_2->setStyleSheet(QStringLiteral("background-color: rgb(158, 158, 158);"));
+        Button_Chiper = new QPushButton(centralWidget);
+        Button_Chiper->setObjectName(QStringLiteral("Button_Chiper"));
+        Button_Chiper->setGeometry(QRect(10, 220, 141, 41));
         QFont font3;
         font3.setBold(true);
         font3.setWeight(75);
-        pushButton->setFont(font3);
+        Button_Chiper->setFont(font3);
+        Button_Chiper->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+"selection-background-color: rgb(255, 255, 127);\n"
+"selection-color: rgb(255, 130, 41);"));
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(160, 220, 141, 41));
         pushButton_2->setFont(font3);
+        pushButton_2->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+""));
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(310, 220, 141, 41));
@@ -111,19 +125,27 @@ public:
         font4.setItalic(false);
         font4.setWeight(75);
         pushButton_3->setFont(font4);
+        pushButton_3->setStyleSheet(QStringLiteral(""));
         pushButton_4 = new QPushButton(centralWidget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         pushButton_4->setGeometry(QRect(460, 220, 141, 41));
         pushButton_4->setFont(font3);
+        pushButton_4->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(360, 160, 191, 17));
         label_3->setFont(font1);
+        label_3->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
         spinBox = new QSpinBox(centralWidget);
         spinBox->setObjectName(QStringLiteral("spinBox"));
         spinBox->setGeometry(QRect(540, 155, 45, 27));
+        spinBox->setAutoFillBackground(false);
+        spinBox->setStyleSheet(QStringLiteral("background-color: rgb(158, 158, 158);"));
+        spinBox->setWrapping(false);
+        spinBox->setProperty("showGroupSeparator", QVariant(false));
         spinBox->setMinimum(1);
         spinBox->setMaximum(2);
+        spinBox->setDisplayIntegerBase(10);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -131,6 +153,8 @@ public:
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:0.33 rgba(0, 0, 0, 255), stop:0.34 rgba(255, 30, 30, 255), stop:0.66 rgba(255, 0, 0, 255), stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -152,7 +176,7 @@ public:
          << QApplication::translate("MainWindow", "zxcs", 0)
         );
         comboBox->setCurrentText(QApplication::translate("MainWindow", "New Item", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
+        Button_Chiper->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
         pushButton_2->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
         pushButton_3->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\272\320\260\320\267\320\260\321\202\321\214 \321\202\320\260\320\261\320\273\320\270\321\206\321\213", 0));
         pushButton_4->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", 0));

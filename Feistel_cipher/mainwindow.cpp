@@ -9,6 +9,32 @@ MainWindow::MainWindow(QWidget *parent) :
     //const QRect r = QApplication::desktop()->availableGeometry();
     //this->resize(r.width()*0.50, r.height()*0.80);
 
+    ui->pushButton_2->setStyleSheet("QPushButton{"
+                                    "color: rgb(152, 255, 238);"
+                                    "}"
+                                    "QPushButton:hover{"
+                                    "color:rgb(255, 130, 41);"
+                                    "}");
+    ui->pushButton_3->setStyleSheet("QPushButton{"
+                                    "color: rgb(152, 255, 238);"
+                                    "}"
+                                    "QPushButton:hover{"
+                                    "color:rgb(255, 130, 41);"
+                                    "}");
+    ui->pushButton_4->setStyleSheet("QPushButton{"
+                                    "color: rgb(152, 255, 238);"
+                                    "}"
+                                    "QPushButton:hover{"
+                                    "color:rgb(255, 130, 41);"
+                                    "}");
+    ui->Button_Chiper->setStyleSheet("QPushButton{"
+                                    "color: rgb(152, 255, 238);"
+                                    "}"
+                                    "QPushButton:hover{"
+                                    "color:rgb(255, 130, 41);"
+                                    "}");
+
+
     n=6;
     m=4;
 
@@ -18,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
                   "Под_окном_полз_злой_паук"
                   "Птицы_летели_за_горизонт"
                   "Утро_было_особо_туманным");
+
+     connect(ui->Button_Chiper,SIGNAL(clicked(bool)),SLOT(Chiper()));
 
     //qDebug()<<text.length()/8;
 
@@ -38,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //setCentralWidget(MainWidget);
 
-    Chiper();
+    //Chiper();
 
 
 }
@@ -118,6 +146,9 @@ void MainWindow::createBlok(int NumberbOfBlok){
 
 void MainWindow::Chiper(){
 
+    text=ui->textEdit->toPlainText();
+    Result="";
+
     text=text.toUpper();
     key="шарп";
     key=key.toUpper();
@@ -137,6 +168,9 @@ void MainWindow::Chiper(){
     }
 
     qDebug()<<Result;
+    ui->textEdit_2->setText("");
+    ui->textEdit_2->setText(Result);
+    saveCSV();
     //saveCSV();
     createTables();
 }

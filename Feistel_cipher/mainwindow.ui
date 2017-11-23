@@ -18,6 +18,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #454545;</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
@@ -28,6 +31,9 @@
       <height>191</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(158, 158, 158);</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
@@ -37,6 +43,10 @@
       <width>113</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(158, 158, 158);
+border-color: rgb(186, 186, 186);</string>
     </property>
     <property name="maxLength">
      <number>4</number>
@@ -59,6 +69,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);</string>
+    </property>
     <property name="text">
      <string>Ключ1</string>
     </property>
@@ -80,6 +93,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);</string>
+    </property>
     <property name="text">
      <string>Ключ2</string>
     </property>
@@ -100,6 +116,10 @@
       <italic>false</italic>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);
+selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="currentText">
      <string>New Item</string>
@@ -124,8 +144,11 @@
       <height>231</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(158, 158, 158);</string>
+    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="Button_Chiper">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -139,6 +162,11 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);
+selection-background-color: rgb(255, 255, 127);
+selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="text">
      <string>Зашифровать</string>
@@ -158,6 +186,10 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);
+</string>
     </property>
     <property name="text">
      <string>Расшифровать</string>
@@ -181,6 +213,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Показать таблицы</string>
     </property>
@@ -199,6 +234,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);</string>
     </property>
     <property name="text">
      <string>Сохранить</string>
@@ -221,6 +259,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(152, 255, 238);</string>
+    </property>
     <property name="text">
      <string>Количество раундов</string>
     </property>
@@ -234,11 +275,26 @@
       <height>27</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(158, 158, 158);</string>
+    </property>
+    <property name="wrapping">
+     <bool>false</bool>
+    </property>
+    <property name="showGroupSeparator" stdset="0">
+     <bool>false</bool>
+    </property>
     <property name="minimum">
      <number>1</number>
     </property>
     <property name="maximum">
      <number>2</number>
+    </property>
+    <property name="displayIntegerBase">
+     <number>10</number>
     </property>
    </widget>
   </widget>
@@ -253,6 +309,10 @@
    </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:0.33 rgba(0, 0, 0, 255), stop:0.34 rgba(255, 30, 30, 255), stop:0.66 rgba(255, 0, 0, 255), stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));</string>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
