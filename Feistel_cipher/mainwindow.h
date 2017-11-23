@@ -35,8 +35,8 @@ private:
     int tableHeight;
     int tableWidth;
 
-    const int n=6;
-    const int m=4;
+    int n;
+    int m;
 
         QString Lo,Ro;
         QString Rk1;

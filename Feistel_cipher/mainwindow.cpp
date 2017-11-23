@@ -9,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
     const QRect r = QApplication::desktop()->availableGeometry();
     this->resize(r.width()*0.50, r.height()*0.80);
 
+    n=6;
+    m=4;
+
     createMap();
 
      text=("Старый_дом_стоял_в_тени."
@@ -134,21 +137,19 @@ void MainWindow::Chiper(){
     }
 
     qDebug()<<Result;
-    saveCSV();
+    //saveCSV();
+    createTables();
 }
 
 void MainWindow::createTables(){
 
-    QString Lo,Ro;
-    QString Rk1="";
-    QString RLo="";
-    QString R1="";
-    QString L1="";
     int sum=0;
 
-    QVector<QTableWidget> masstables;
+   // QVector<QTableWidget>* masstables;
 
-    tablewidget=new QTableWidget(MainWidget);
+    QGridLayout* grdlayout=new QGridLayout;
+
+    tablewidget=new QTableWidget;
     tablewidget->horizontalHeader()->hide();
     tablewidget->verticalHeader()->hide();
     tablewidget->setRowCount(n);
@@ -163,12 +164,7 @@ void MainWindow::createTables(){
     int KolBloks=0;
     //while(KolBloks<bloks.length()){
 
-        Rk1="";
-        RLo="";
-        R1="";
-        L1="";
-        Lo=bloks[KolBloks];
-        Ro=bloks[KolBloks+1];
+        createBlok(KolBloks);
 
         for(int i=0;i<4;i++){
          tableitem=new QTableWidgetItem(Ro[i]+"");
@@ -185,7 +181,15 @@ void MainWindow::createTables(){
          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
          tablewidget->setItem(5,i,tableitem);
         }
+        //masstables->push_back(*tablewidget);
 
+        tablewidget=new QTableWidget;
+        tablewidget->horizontalHeader()->hide();
+        tablewidget->verticalHeader()->hide();
+        tablewidget->setRowCount(n);
+        tablewidget->setColumnCount(m);
+        tablewidget->setMaximumHeight(tableHeight);
+        tablewidget->setMinimumWidth(tableWidth);
 
         for(int i=0;i<4;i++){
          tableitem=new QTableWidgetItem(Lo[i]+"");
@@ -202,8 +206,14 @@ void MainWindow::createTables(){
          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
          tablewidget->setItem(5,i,tableitem);
         }
+         //masstables->push_back(*tablewidget);
+
+         //grdlayout->addWidget(masstables->data(),0,0);
+        // grdlayout->addWidget(masstables->data(),0,1);
 
     //}
+
+        MainWidget->setLayout(grdlayout);
 
 }
 
@@ -344,9 +354,16 @@ void MainWindow::saveCSV(){
         ts<<"\"\"\n";
         ts<<"\"\"\n";
 
-
       KolBloks++;
     }
+    /*ts<<";;;;;;;;;\"Result=""\";";
+    for(int i=0;i<Result.length();i++){
+        //if(i%5==0&&i!=0){
+         //   ts<<";";
+        //}
+        ts<<Result[i];
+    }*/
+
     f.close();
 
 }
