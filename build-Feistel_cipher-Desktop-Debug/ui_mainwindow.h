@@ -38,10 +38,10 @@ public:
     QLabel *label_2;
     QComboBox *comboBox;
     QTextEdit *textEdit_2;
-    QPushButton *Button_Chiper;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
+    QPushButton *Chiper_Button;
+    QPushButton *Dechiper_Button;
+    QPushButton *Tableview_Button;
+    QPushButton *Save_Button;
     QLabel *label_3;
     QSpinBox *spinBox;
     QMenuBar *menuBar;
@@ -62,12 +62,14 @@ public:
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(10, 20, 331, 191));
-        textEdit->setStyleSheet(QStringLiteral("background-color: rgb(158, 158, 158);"));
+        textEdit->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
+"color: rgb(0, 0, 0);"));
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(420, 35, 113, 31));
         lineEdit->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
-"border-color: rgb(186, 186, 186);"));
+"border-color: rgb(186, 186, 186);\n"
+"color: rgb(0, 0, 0);"));
         lineEdit->setMaxLength(4);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
@@ -98,39 +100,41 @@ public:
         textEdit_2 = new QTextEdit(centralWidget);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setGeometry(QRect(10, 280, 601, 231));
-        textEdit_2->setStyleSheet(QStringLiteral("background-color: rgb(158, 158, 158);"));
-        Button_Chiper = new QPushButton(centralWidget);
-        Button_Chiper->setObjectName(QStringLiteral("Button_Chiper"));
-        Button_Chiper->setGeometry(QRect(10, 220, 141, 41));
+        textEdit_2->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
+"color: rgb(0, 0, 0);"));
+        Chiper_Button = new QPushButton(centralWidget);
+        Chiper_Button->setObjectName(QStringLiteral("Chiper_Button"));
+        Chiper_Button->setGeometry(QRect(10, 220, 141, 41));
         QFont font3;
         font3.setBold(true);
         font3.setWeight(75);
-        Button_Chiper->setFont(font3);
-        Button_Chiper->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+        Chiper_Button->setFont(font3);
+        Chiper_Button->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
 "selection-background-color: rgb(255, 255, 127);\n"
 "selection-color: rgb(255, 130, 41);"));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(160, 220, 141, 41));
-        pushButton_2->setFont(font3);
-        pushButton_2->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+        Dechiper_Button = new QPushButton(centralWidget);
+        Dechiper_Button->setObjectName(QStringLiteral("Dechiper_Button"));
+        Dechiper_Button->setGeometry(QRect(160, 220, 141, 41));
+        Dechiper_Button->setFont(font3);
+        Dechiper_Button->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
 ""));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(310, 220, 141, 41));
+        Tableview_Button = new QPushButton(centralWidget);
+        Tableview_Button->setObjectName(QStringLiteral("Tableview_Button"));
+        Tableview_Button->setGeometry(QRect(310, 220, 141, 41));
         QFont font4;
         font4.setFamily(QStringLiteral("Noto Sans"));
         font4.setPointSize(10);
         font4.setBold(true);
         font4.setItalic(false);
         font4.setWeight(75);
-        pushButton_3->setFont(font4);
-        pushButton_3->setStyleSheet(QStringLiteral(""));
-        pushButton_4 = new QPushButton(centralWidget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(460, 220, 141, 41));
-        pushButton_4->setFont(font3);
-        pushButton_4->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
+        Tableview_Button->setFont(font4);
+        Tableview_Button->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+""));
+        Save_Button = new QPushButton(centralWidget);
+        Save_Button->setObjectName(QStringLiteral("Save_Button"));
+        Save_Button->setGeometry(QRect(460, 220, 141, 41));
+        Save_Button->setFont(font3);
+        Save_Button->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(360, 160, 191, 17));
@@ -140,7 +144,7 @@ public:
         spinBox->setObjectName(QStringLiteral("spinBox"));
         spinBox->setGeometry(QRect(540, 155, 45, 27));
         spinBox->setAutoFillBackground(false);
-        spinBox->setStyleSheet(QStringLiteral("background-color: rgb(158, 158, 158);"));
+        spinBox->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         spinBox->setWrapping(false);
         spinBox->setProperty("showGroupSeparator", QVariant(false));
         spinBox->setMinimum(1);
@@ -176,10 +180,10 @@ public:
          << QApplication::translate("MainWindow", "zxcs", 0)
         );
         comboBox->setCurrentText(QApplication::translate("MainWindow", "New Item", 0));
-        Button_Chiper->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\272\320\260\320\267\320\260\321\202\321\214 \321\202\320\260\320\261\320\273\320\270\321\206\321\213", 0));
-        pushButton_4->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", 0));
+        Chiper_Button->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
+        Dechiper_Button->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
+        Tableview_Button->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\272\320\260\320\267\320\260\321\202\321\214 \321\202\320\260\320\261\320\273\320\270\321\206\321\213", 0));
+        Save_Button->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", 0));
         label_3->setText(QApplication::translate("MainWindow", "\320\232\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\276 \321\200\320\260\321\203\320\275\320\264\320\276\320\262", 0));
     } // retranslateUi
 

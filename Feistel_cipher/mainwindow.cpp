@@ -9,25 +9,25 @@ MainWindow::MainWindow(QWidget *parent) :
     //const QRect r = QApplication::desktop()->availableGeometry();
     //this->resize(r.width()*0.50, r.height()*0.80);
 
-    ui->pushButton_2->setStyleSheet("QPushButton{"
+    ui->Save_Button->setStyleSheet("QPushButton{"
                                     "color: rgb(152, 255, 238);"
                                     "}"
                                     "QPushButton:hover{"
                                     "color:rgb(255, 130, 41);"
                                     "}");
-    ui->pushButton_3->setStyleSheet("QPushButton{"
+    ui->Dechiper_Button->setStyleSheet("QPushButton{"
                                     "color: rgb(152, 255, 238);"
                                     "}"
                                     "QPushButton:hover{"
                                     "color:rgb(255, 130, 41);"
                                     "}");
-    ui->pushButton_4->setStyleSheet("QPushButton{"
+    ui->Tableview_Button->setStyleSheet("QPushButton{"
                                     "color: rgb(152, 255, 238);"
                                     "}"
                                     "QPushButton:hover{"
                                     "color:rgb(255, 130, 41);"
                                     "}");
-    ui->Button_Chiper->setStyleSheet("QPushButton{"
+    ui->Chiper_Button->setStyleSheet("QPushButton{"
                                     "color: rgb(152, 255, 238);"
                                     "}"
                                     "QPushButton:hover{"
@@ -45,7 +45,9 @@ MainWindow::MainWindow(QWidget *parent) :
                   "Птицы_летели_за_горизонт"
                   "Утро_было_особо_туманным");
 
-     connect(ui->Button_Chiper,SIGNAL(clicked(bool)),SLOT(Chiper()));
+     connect(ui->Chiper_Button,SIGNAL(clicked(bool)),SLOT(Chiper()));
+     connect(ui->Save_Button,SIGNAL(clicked(bool)),SLOT(saveCSV()));
+     connect(ui->Dechiper_Button,SIGNAL(clicked(bool)),SLOT(Dechiper()));
 
     //qDebug()<<text.length()/8;
 
@@ -119,6 +121,7 @@ void MainWindow::createMap(){
 }
 
 void MainWindow::createBlok(int NumberbOfBlok){
+
     Rk1="";
     RLo="";
     R1="";
@@ -163,7 +166,7 @@ void MainWindow::Chiper(){
     int KolBloks=0;
     while(KolBloks<bloks.length()){
       createBlok(KolBloks);
-      Result+=R1+" "+L1+" ";
+      Result+=R1+L1;
       KolBloks++;
     }
 
@@ -173,6 +176,83 @@ void MainWindow::Chiper(){
     saveCSV();
     //saveCSV();
     createTables();
+}
+
+void MainWindow::Dechiper(){
+
+    Rk1="";
+    RLo="";
+    R1="";
+    L1="";
+    Lo="";
+    Ro="";
+
+    text=ui->textEdit->toPlainText();
+    Result="";
+
+    text=text.toUpper();
+    key="шарп";
+    key=key.toUpper();
+    key2="праш";
+    key2=key2.toUpper();
+
+    bloks.clear();
+
+    for (int i = 0; i < text.count(); i+=8){
+        bloks<<text.mid(i,8);
+    }
+
+    for(int i=0;i<4;i++){
+    Lo+=bloks[0][i];
+    Ro+=bloks[0][i+4];
+    }
+
+    qDebug()<<"Ro:"<<Ro;
+    qDebug()<<"Lo:"<<Lo;
+
+    int KolBloks=0;
+    while(KolBloks<bloks.length()){
+        Rk1="";
+        RLo="";
+        R1="";
+        L1="";
+        Lo="";
+        Ro="";
+        for(int i=0;i<4;i++){
+        Lo+=bloks[KolBloks][i];
+        Ro+=bloks[KolBloks][i+4];
+        }
+
+        for(int i=0;i<4;i++){
+            Rk1+=NumbersAlphabet[(alphabet[Lo[i]+""]+alphabet[key2[i]+""])%36];
+        }
+        qDebug()<<"Rk1:"<<Rk1;
+        for(int i=0;i<4;i++){
+            if(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""]<=0){
+                 R1+=NumbersAlphabet[(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""])+36];
+            }else
+            R1+=NumbersAlphabet[(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""])%36];
+        }
+        qDebug()<<"R1:"<<R1;
+        for(int i=0;i<4;i++){
+             RLo+=NumbersAlphabet[(alphabet[R1[i]+""]+alphabet[key[i]+""])%36];
+        }
+        qDebug()<<"RLo:"<<RLo;
+        for(int i=0;i<4;i++){
+            if(alphabet[Lo[i]+""]-alphabet[RLo[i]+""]<=0){
+                 L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])+36];
+            }else
+            L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])%36];
+      }
+        qDebug()<<"L1:"<<L1;
+      Result+=L1+R1;
+      KolBloks++;
+    }
+
+    qDebug()<<Result;
+    ui->textEdit_2->setText("");
+    ui->textEdit_2->setText(Result);
+
 }
 
 void MainWindow::createTables(){
@@ -273,7 +353,7 @@ void MainWindow::saveCSV(){
     while(KolBloks<bloks.length()){
          createBlok(KolBloks);
 
-        ts<<";;;;\"Blok"+QString::number(KolBloks+1)+"\"\n";
+        ts<<";;;;Blok"+QString::number(KolBloks+1)+"\n";
 
 
         for(int i=0;i<4;i++){

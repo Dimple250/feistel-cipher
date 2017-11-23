@@ -32,7 +32,8 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(158, 158, 158);</string>
+     <string notr="true">background-color: rgb(158, 158, 158);
+color: rgb(0, 0, 0);</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
@@ -46,7 +47,8 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(158, 158, 158);
-border-color: rgb(186, 186, 186);</string>
+border-color: rgb(186, 186, 186);
+color: rgb(0, 0, 0);</string>
     </property>
     <property name="maxLength">
      <number>4</number>
@@ -145,10 +147,11 @@ selection-color: rgb(255, 130, 41);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(158, 158, 158);</string>
+     <string notr="true">background-color: rgb(158, 158, 158);
+color: rgb(0, 0, 0);</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Button_Chiper">
+   <widget class="QPushButton" name="Chiper_Button">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -172,7 +175,7 @@ selection-color: rgb(255, 130, 41);</string>
      <string>Зашифровать</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="Dechiper_Button">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -195,7 +198,7 @@ selection-color: rgb(255, 130, 41);</string>
      <string>Расшифровать</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="Tableview_Button">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -214,13 +217,14 @@ selection-color: rgb(255, 130, 41);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">color: rgb(152, 255, 238);
+</string>
     </property>
     <property name="text">
      <string>Показать таблицы</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="Save_Button">
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -279,7 +283,7 @@ selection-color: rgb(255, 130, 41);</string>
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(158, 158, 158);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="wrapping">
      <bool>false</bool>
