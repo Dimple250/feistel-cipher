@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     MainWidget=new QWidget(this);
-    tablewidget=new QTableWidget(MainWidget);
+    tablewidget=new QTableWidget;
     tablewidget->horizontalHeader()->hide();
     tablewidget->verticalHeader()->hide();
 
@@ -29,38 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
         tableHeight = tablewidget->horizontalHeader()->height() +
                           tablewidget->verticalHeader()->length() + 2;
-        tablewidget->setMaximumHeight(tableHeight);
 
         tableWidth = tablewidget->verticalHeader()->width() +
                               tablewidget->horizontalHeader()->length() + 2;
-        tablewidget->setMinimumWidth(tableWidth);
-
-    QTableWidgetItem* tableitem=0;
-
-
-    /*for(int i=4;i<8;i++){
-     tableitem=new QTableWidgetItem(s[i]+"");
-     tablewidget->setItem(0,i-4,tableitem);
-    // qDebug()<<alphabet[s[i]+""];
-     tableitem=new QTableWidgetItem(key[i-4]+"");
-     tablewidget->setItem(1,i-4,tableitem);
-
-     tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[s[i]+""]));
-        tablewidget->setItem(2,i-4,tableitem);
-
-     tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[key[i-4]+""]));
-        tablewidget->setItem(3,i-4,tableitem);
-}*/
-
-    /*int t=0;
-    for(int i=0;i<4;i++){
-        t=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
-        tableitem=new QTableWidgetItem(QString("%1").arg(t));
-          tablewidget->setItem(4,i,tableitem);
-          tableitem=new QTableWidgetItem(NumbersAlphabet[t]);
-            tablewidget->setItem(5,i,tableitem);
-
-    }*/
 
     setCentralWidget(MainWidget);
 
@@ -116,6 +87,31 @@ void MainWindow::createMap(){
     NumbersAlphabet[34]=",";NumbersAlphabet[35]="_";
 }
 
+void MainWindow::createBlok(int NumberbOfBlok){
+    Rk1="";
+    RLo="";
+    R1="";
+    L1="";
+    Lo="";
+    Ro="";
+    for(int i=0;i<4;i++){
+    Lo+=bloks[NumberbOfBlok][i];
+    Ro+=bloks[NumberbOfBlok][i+4];
+    }
+
+    for(int i=0;i<4;i++){
+        Rk1+=NumbersAlphabet[(alphabet[Ro[i]+""]+alphabet[key[i]+""])%36];
+    }
+    for(int i=0;i<4;i++){
+        R1+=NumbersAlphabet[(alphabet[Lo[i]+""]+alphabet[Rk1[i]+""])%36];
+    }
+    for(int i=0;i<4;i++){
+         RLo+=NumbersAlphabet[(alphabet[R1[i]+""]+alphabet[key2[i]+""])%36];
+    }
+    for(int i=0;i<4;i++){
+        L1+=NumbersAlphabet[(alphabet[Ro[i]+""]+alphabet[RLo[i]+""])%36];
+  }
+}
 
 void MainWindow::Chiper(){
 
@@ -125,12 +121,100 @@ void MainWindow::Chiper(){
     key2="праш";
     key2=key2.toUpper();
 
+    Result="";
 
-    for (int i = 0; i < text.count(); i+=4)
-        bloks<<text.mid(i,4);
+    for (int i = 0; i < text.count(); i+=8)
+        bloks<<text.mid(i,8);
 
-    //qDebug()<<bloks[1];
-    //qDebug()<<bloks[0];
+    int KolBloks=0;
+    while(KolBloks<bloks.length()){
+      createBlok(KolBloks);
+      Result+=R1+" "+L1+" ";
+      KolBloks++;
+    }
+
+    qDebug()<<Result;
+    saveCSV();
+}
+
+void MainWindow::createTables(){
+
+    QString Lo,Ro;
+    QString Rk1="";
+    QString RLo="";
+    QString R1="";
+    QString L1="";
+    int sum=0;
+
+    QVector<QTableWidget> masstables;
+
+    tablewidget=new QTableWidget(MainWidget);
+    tablewidget->horizontalHeader()->hide();
+    tablewidget->verticalHeader()->hide();
+    tablewidget->setRowCount(n);
+    tablewidget->setColumnCount(m);
+    tablewidget->setMaximumHeight(tableHeight);
+    tablewidget->setMinimumWidth(tableWidth);
+
+
+    QTableWidgetItem* tableitem=0;
+
+
+    int KolBloks=0;
+    //while(KolBloks<bloks.length()){
+
+        Rk1="";
+        RLo="";
+        R1="";
+        L1="";
+        Lo=bloks[KolBloks];
+        Ro=bloks[KolBloks+1];
+
+        for(int i=0;i<4;i++){
+         tableitem=new QTableWidgetItem(Ro[i]+"");
+         tablewidget->setItem(0,i,tableitem);
+         tableitem=new QTableWidgetItem(key[i]+"");
+         tablewidget->setItem(1,i,tableitem);
+         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Ro[i]+""]));
+         tablewidget->setItem(2,i,tableitem);
+         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[key[i]+""]));
+         tablewidget->setItem(3,i,tableitem);
+         sum=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
+         tableitem=new QTableWidgetItem(QString("%1").arg(sum));
+         tablewidget->setItem(4,i,tableitem);
+         tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
+         tablewidget->setItem(5,i,tableitem);
+        }
+
+
+        for(int i=0;i<4;i++){
+         tableitem=new QTableWidgetItem(Lo[i]+"");
+         tablewidget->setItem(0,i,tableitem);
+         tableitem=new QTableWidgetItem(key[i]+"");
+         tablewidget->setItem(1,i,tableitem);
+         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Ro[i]+""]));
+         tablewidget->setItem(2,i,tableitem);
+         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[key[i]+""]));
+         tablewidget->setItem(3,i,tableitem);
+         sum=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
+         tableitem=new QTableWidgetItem(QString("%1").arg(sum));
+         tablewidget->setItem(4,i,tableitem);
+         tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
+         tablewidget->setItem(5,i,tableitem);
+        }
+
+    //}
+
+}
+
+void MainWindow::saveCSV(){
+
+    text=text.toUpper();
+    key="шарп";
+    key=key.toUpper();
+    key2="праш";
+    key2=key2.toUpper();
+
 
     QFile f("/home/deus/Desktop/Книга2.csv");
 
@@ -141,43 +225,11 @@ void MainWindow::Chiper(){
             QStringList strList;
 
 
-    QString Lo,Ro;
-    QString Rk1="";
-    QString RLo="";
-    QString R1="";
-    QString L1="";
-    QString Result="";
-
     int KolBloks=0;
     while(KolBloks<bloks.length()){
-          Rk1="";
-          RLo="";
-          R1="";
-          L1="";
-          Lo=bloks[KolBloks];
-          Ro=bloks[KolBloks+1];
-         // if(KolBloks%2==0){
-           //   ts<<"\"\"\n";
-          //}
+         createBlok(KolBloks);
 
-
-
-          for(int i=0;i<4;i++){
-              Rk1+=NumbersAlphabet[(alphabet[Ro[i]+""]+alphabet[key[i]+""])%36];
-          }
-          for(int i=0;i<4;i++){
-              R1+=NumbersAlphabet[(alphabet[Lo[i]+""]+alphabet[Rk1[i]+""])%36];
-          }
-        Result+=R1+" ";
-        for(int i=0;i<4;i++){
-            RLo+=NumbersAlphabet[(alphabet[R1[i]+""]+alphabet[key2[i]+""])%36];
-        }
-        for(int i=0;i<4;i++){
-            L1+=NumbersAlphabet[(alphabet[Ro[i]+""]+alphabet[RLo[i]+""])%36];
-        }
-        Result+=L1+" ";
-
-        ts<<";;;;\"Blok"+QString::number(KolBloks/2+1)+"\"\n";
+        ts<<";;;;\"Blok"+QString::number(KolBloks+1)+"\"\n";
 
 
         for(int i=0;i<4;i++){
@@ -293,74 +345,8 @@ void MainWindow::Chiper(){
         ts<<"\"\"\n";
 
 
-      KolBloks+=2;
+      KolBloks++;
     }
-
-    qDebug()<<Result;
-    createTables();
     f.close();
-
-}
-
-void MainWindow::createTables(){
-
-    QString Lo,Ro;
-    QString R="";
-    QString R1="";
-    QString L1="";
-    int sum=0;
-
-
-
-    tablewidget=new QTableWidget(MainWidget);
-    tablewidget->horizontalHeader()->hide();
-    tablewidget->verticalHeader()->hide();
-    tablewidget->setRowCount(n);
-    tablewidget->setColumnCount(m);
-    tablewidget->setMaximumHeight(tableHeight);
-    tablewidget->setMinimumWidth(tableWidth);
-
-
-    QTableWidgetItem* tableitem=0;
-    QFile f("/home/deus/Desktop/Книга2.csv");
-
-        if( !f.open( QIODevice::WriteOnly ) )
-        {
-        }
-            QTextStream ts( &f );
-            QStringList strList;
-
-
-
-    int KolBloks=0;
-    //while(KolBloks<bloks.length()){
-
-        R="";
-        R1="";
-        L1="";
-        Lo=bloks[KolBloks];
-        Ro=bloks[KolBloks+1];
-
-        for(int i=0;i<4;i++){
-           // ts<<"\""+Ro[i]+"\";";
-         tableitem=new QTableWidgetItem(Ro[i]+"");
-         tablewidget->setItem(0,i,tableitem);
-         tableitem=new QTableWidgetItem(key[i]+"");
-         tablewidget->setItem(1,i,tableitem);
-         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Ro[i]+""]));
-         tablewidget->setItem(2,i,tableitem);
-         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[key[i]+""]));
-         tablewidget->setItem(3,i,tableitem);
-         sum=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
-         tableitem=new QTableWidgetItem(QString("%1").arg(sum));
-         tablewidget->setItem(4,i,tableitem);
-         tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
-         tablewidget->setItem(5,i,tableitem);
-        }
-
-        //ts<<strList.join(";")+'\n';
-        f.close();
-
-    //}
 
 }
