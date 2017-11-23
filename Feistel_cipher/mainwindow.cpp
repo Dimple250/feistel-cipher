@@ -6,8 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    const QRect r = QApplication::desktop()->availableGeometry();
-    this->resize(r.width()*0.50, r.height()*0.80);
+    //const QRect r = QApplication::desktop()->availableGeometry();
+    //this->resize(r.width()*0.50, r.height()*0.80);
 
     n=6;
     m=4;
@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
         tableWidth = tablewidget->verticalHeader()->width() +
                               tablewidget->horizontalHeader()->length() + 2;
 
-    setCentralWidget(MainWidget);
+    //setCentralWidget(MainWidget);
 
     Chiper();
 
