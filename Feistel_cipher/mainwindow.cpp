@@ -441,11 +441,11 @@ void MainWindow::saveCSV(){
             QStringList strList;
 
 
-    int KolBloks=0;
-    while(KolBloks<bloks.length()){
-         createBlok(KolBloks);
+    NumberbOfBlok=0;
+    while(NumberbOfBlok<bloks.length()){
+         createBlok(NumberbOfBlok);
 
-        ts<<";;;;Blok"+QString::number(KolBloks+1)+"\n";
+        ts<<";;;;Blok"+QString::number(NumberbOfBlok+1)+"\n";
 
 
         for(int i=0;i<4;i++){
@@ -560,16 +560,8 @@ void MainWindow::saveCSV(){
         ts<<"\"\"\n";
         ts<<"\"\"\n";
 
-      KolBloks++;
+      NumberbOfBlok++;
     }
-    /*ts<<";;;;;;;;;\"Result=""\";";
-    for(int i=0;i<Result.length();i++){
-        //if(i%5==0&&i!=0){
-         //   ts<<";";
-        //}
-        ts<<Result[i];
-    }*/
-
     f.close();
 
 }
