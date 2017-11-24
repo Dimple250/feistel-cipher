@@ -33,10 +33,10 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QTextEdit *textEdit;
-    QLineEdit *lineEdit;
+    QLineEdit *Key1;
     QLabel *label;
     QLabel *label_2;
-    QComboBox *comboBox;
+    QComboBox *Key2_ComboBox;
     QTextEdit *textEdit_2;
     QPushButton *Chiper_Button;
     QPushButton *Dechiper_Button;
@@ -65,13 +65,13 @@ public:
         textEdit->setGeometry(QRect(10, 20, 331, 191));
         textEdit->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
 "color: rgb(0, 0, 0);"));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(420, 35, 113, 31));
-        lineEdit->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
+        Key1 = new QLineEdit(centralWidget);
+        Key1->setObjectName(QStringLiteral("Key1"));
+        Key1->setGeometry(QRect(420, 35, 113, 31));
+        Key1->setStyleSheet(QLatin1String("background-color: rgb(158, 158, 158);\n"
 "border-color: rgb(186, 186, 186);\n"
 "color: rgb(0, 0, 0);"));
-        lineEdit->setMaxLength(4);
+        Key1->setMaxLength(4);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(360, 40, 54, 17));
@@ -87,16 +87,16 @@ public:
         label_2->setGeometry(QRect(360, 99, 54, 17));
         label_2->setFont(font1);
         label_2->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
-        comboBox = new QComboBox(centralWidget);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(420, 90, 111, 31));
+        Key2_ComboBox = new QComboBox(centralWidget);
+        Key2_ComboBox->setObjectName(QStringLiteral("Key2_ComboBox"));
+        Key2_ComboBox->setGeometry(QRect(420, 90, 111, 31));
         QFont font2;
         font2.setPointSize(9);
         font2.setBold(true);
         font2.setItalic(false);
         font2.setWeight(75);
-        comboBox->setFont(font2);
-        comboBox->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
+        Key2_ComboBox->setFont(font2);
+        Key2_ComboBox->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
 "selection-color: rgb(255, 130, 41);"));
         textEdit_2 = new QTextEdit(centralWidget);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
@@ -156,7 +156,6 @@ public:
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         mainToolBar->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        MainWindow->insertToolBarBreak(mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -175,12 +174,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         label->setText(QApplication::translate("MainWindow", "\320\232\320\273\321\216\321\2071", 0));
         label_2->setText(QApplication::translate("MainWindow", "\320\232\320\273\321\216\321\2072", 0));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "New Item", 0)
-         << QApplication::translate("MainWindow", "zxcs", 0)
-        );
-        comboBox->setCurrentText(QApplication::translate("MainWindow", "New Item", 0));
+        Key2_ComboBox->setCurrentText(QString());
         Chiper_Button->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
         Dechiper_Button->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
         Tableview_Button->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\272\320\260\320\267\320\260\321\202\321\214 \321\202\320\260\320\261\320\273\320\270\321\206\321\213", 0));

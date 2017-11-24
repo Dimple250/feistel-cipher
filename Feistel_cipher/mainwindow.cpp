@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
      connect(ui->Chiper_Button,SIGNAL(clicked(bool)),SLOT(Chiper()));
      connect(ui->Save_Button,SIGNAL(clicked(bool)),SLOT(saveCSV()));
      connect(ui->Dechiper_Button,SIGNAL(clicked(bool)),SLOT(Dechiper()));
+     connect(ui->Key1,SIGNAL(textChanged(QString)),SLOT(createKey2()));
 
     //qDebug()<<text.length()/8;
 
@@ -158,9 +159,10 @@ void MainWindow::Chiper(){
     Result="";
 
     text=text.toUpper();
-    key="шарп";
+    key=ui->Key1->text();
     key=key.toUpper();
-    key2="праш";
+    key2=ui->Key2_ComboBox->currentText();
+    qDebug()<<key2;
     key2=key2.toUpper();
 
     bloks.clear();
@@ -254,6 +256,18 @@ void MainWindow::Dechiper(){
     ui->textEdit_2->setText("");
     ui->textEdit_2->setText(Result);
 
+}
+
+void MainWindow::createKey2(){
+    if(ui->Key1->text().length()==4){
+        QString str=ui->Key1->text();
+        ui->Key2_ComboBox->clear();
+        ui->Key2_ComboBox->addItem(""+str[3]+str[2]+str[1]+str[0]);
+        ui->Key2_ComboBox->addItem(""+str[3]+str[0]+str[1]+str[2]);
+        ui->Key2_ComboBox->addItem(""+str[2]+str[3]+str[0]+str[1]);
+        ui->Key2_ComboBox->addItem(""+str[1]+str[0]+str[3]+str[2]);
+        ui->Key2_ComboBox->addItem(""+str[1]+str[2]+str[3]+str[0]);
+    }
 }
 
 void MainWindow::createTables(){

@@ -47,6 +47,7 @@ public slots:
     void saveCSV();
     void Chiper();
     void Dechiper();
+    void createKey2();
 
 };
 

@@ -39,7 +39,7 @@
 color: rgb(0, 0, 0);</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="Key1">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -105,7 +105,7 @@ color: rgb(0, 0, 0);</string>
      <string>Ключ2</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="Key2_ComboBox">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -127,18 +127,8 @@ color: rgb(0, 0, 0);</string>
 selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="currentText">
-     <string>New Item</string>
+     <string/>
     </property>
-    <item>
-     <property name="text">
-      <string>New Item</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>zxcs</string>
-     </property>
-    </item>
    </widget>
    <widget class="QTextEdit" name="textEdit_2">
     <property name="geometry">
@@ -313,7 +303,7 @@ selection-color: rgb(255, 130, 41);</string>
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
