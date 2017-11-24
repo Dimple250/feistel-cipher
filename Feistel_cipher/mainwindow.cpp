@@ -9,6 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //const QRect r = QApplication::desktop()->availableGeometry();
     //this->resize(r.width()*0.50, r.height()*0.80);
 
+   ui->mainToolBar->hide();
+    //ui->menuBar-> ;
+    //ui->statusBar->hide();
+
+
     ui->Save_Button->setStyleSheet("QPushButton{"
                                     "color: rgb(152, 255, 238);"
                                     "}"
@@ -52,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //qDebug()<<text.length()/8;
 
 
-    MainWidget=new QWidget(this);
+    //MainWidget=new QWidget(this);
     tablewidget=new QTableWidget;
     tablewidget->horizontalHeader()->hide();
     tablewidget->verticalHeader()->hide();
@@ -158,7 +163,7 @@ void MainWindow::Chiper(){
     key2="праш";
     key2=key2.toUpper();
 
-    Result="";
+    bloks.clear();
 
     for (int i = 0; i < text.count(); i+=8)
         bloks<<text.mid(i,8);
@@ -173,9 +178,9 @@ void MainWindow::Chiper(){
     qDebug()<<Result;
     ui->textEdit_2->setText("");
     ui->textEdit_2->setText(Result);
-    saveCSV();
     //saveCSV();
-    createTables();
+    //saveCSV();
+    //createTables();
 }
 
 void MainWindow::Dechiper(){
@@ -207,8 +212,8 @@ void MainWindow::Dechiper(){
     Ro+=bloks[0][i+4];
     }
 
-    qDebug()<<"Ro:"<<Ro;
-    qDebug()<<"Lo:"<<Lo;
+    //qDebug()<<"Ro:"<<Ro;
+    //qDebug()<<"Lo:"<<Lo;
 
     int KolBloks=0;
     while(KolBloks<bloks.length()){
@@ -226,25 +231,21 @@ void MainWindow::Dechiper(){
         for(int i=0;i<4;i++){
             Rk1+=NumbersAlphabet[(alphabet[Lo[i]+""]+alphabet[key2[i]+""])%36];
         }
-        qDebug()<<"Rk1:"<<Rk1;
         for(int i=0;i<4;i++){
             if(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""]<=0){
                  R1+=NumbersAlphabet[(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""])+36];
             }else
             R1+=NumbersAlphabet[(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""])%36];
         }
-        qDebug()<<"R1:"<<R1;
         for(int i=0;i<4;i++){
              RLo+=NumbersAlphabet[(alphabet[R1[i]+""]+alphabet[key[i]+""])%36];
         }
-        qDebug()<<"RLo:"<<RLo;
         for(int i=0;i<4;i++){
             if(alphabet[Lo[i]+""]-alphabet[RLo[i]+""]<=0){
                  L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])+36];
             }else
             L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])%36];
       }
-        qDebug()<<"L1:"<<L1;
       Result+=L1+R1;
       KolBloks++;
     }
@@ -259,7 +260,7 @@ void MainWindow::createTables(){
 
     int sum=0;
 
-   // QVector<QTableWidget>* masstables;
+    //QList<QTableWidget>* masstables;
 
     QGridLayout* grdlayout=new QGridLayout;
 

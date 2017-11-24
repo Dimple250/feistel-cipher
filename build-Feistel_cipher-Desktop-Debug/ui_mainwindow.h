@@ -44,9 +44,9 @@ public:
     QPushButton *Save_Button;
     QLabel *label_3;
     QSpinBox *spinBox;
-    QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QMenuBar *menuBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -59,6 +59,7 @@ public:
         MainWindow->setStyleSheet(QStringLiteral("background-color: #454545;"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setStyleSheet(QStringLiteral(""));
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(10, 20, 331, 191));
@@ -151,18 +152,18 @@ public:
         spinBox->setMaximum(2);
         spinBox->setDisplayIntegerBase(10);
         MainWindow->setCentralWidget(centralWidget);
+        mainToolBar = new QToolBar(MainWindow);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
+        MainWindow->insertToolBarBreak(mainToolBar);
+        statusBar = new QStatusBar(MainWindow);
+        statusBar->setObjectName(QStringLiteral("statusBar"));
+        MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 627, 27));
         MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        mainToolBar->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 255);\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:0.33 rgba(0, 0, 0, 255), stop:0.34 rgba(255, 30, 30, 255), stop:0.66 rgba(255, 0, 0, 255), stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
