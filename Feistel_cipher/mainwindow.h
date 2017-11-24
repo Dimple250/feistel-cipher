@@ -30,7 +30,7 @@ private:
 
     QMap<QString,int> alphabet;
     QMap<int,QString> NumbersAlphabet;
-    QList<QTableWidget*> masstables;
+    QList<QVBoxLayout*> masstables;
 
     QString text;
     QStringList bloks;

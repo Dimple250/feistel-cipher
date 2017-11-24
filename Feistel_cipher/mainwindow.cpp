@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
     MainTableWidget->setMinimumSize(QSize(r.width()*0.44, r.height()*0.95));
 
     scrollArea = new QScrollArea(MainTableWidget);
+    scrollArea->resize(MainTableWidget->size());
     MainWidget=new QWidget;
     tablewidget=new QTableWidget;
     tablewidget->horizontalHeader()->hide();
@@ -277,20 +278,23 @@ void MainWindow::showTables(){
 
     QGridLayout* grdlayout=new QGridLayout;
 
+    QVBoxLayout* Vbox=new QVBoxLayout;
+
     for(int i=0;i<bloks.length();i++){
-        grdlayout->addWidget(masstables[i*4],i*2,0);
-        grdlayout->addWidget(masstables[(i*4)+1],i*2,1);
-        grdlayout->addWidget(masstables[(i*4)+2],(i*2)+1,0);
-        grdlayout->addWidget(masstables[(i*4)+3],(i*2)+1,1);
+       // grdlayout->addWidget(masstables[i*4],i*2,0);
+       // grdlayout->addWidget(masstables[(i*4)+1],i*2,1);
+        //grdlayout->addWidget(masstables[(i*4)+2],(i*2)+1,0);
+        //grdlayout->addWidget(masstables[(i*4)+3],(i*2)+1,1);
+        Vbox->addLayout(masstables[i]);
     }
 
-        MainWidget->setLayout(grdlayout);
+        MainWidget->setLayout(Vbox);
 
             scrollArea->setWidget(MainWidget);
             //scrollArea->setWidgetResizable(true);
             scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-            scrollArea->resize(MainTableWidget->size());
+            //scrollArea->resize(MainTableWidget->size());
 
         MainTableWidget->show();
 
@@ -303,7 +307,9 @@ void MainWindow::createTable(){
 
     QTableWidgetItem* tableitem=0;
 
-    QLabel* lb=new QLabel(""+NumberbOfBlok,scrollArea);
+    QVBoxLayout* Vbox=new QVBoxLayout;
+
+    QGridLayout* grdlayout=new QGridLayout;
 
         tablewidget=new QTableWidget;
         tablewidget->horizontalHeader()->hide();
@@ -328,7 +334,7 @@ void MainWindow::createTable(){
          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
          tablewidget->setItem(5,i,tableitem);
         }
-        masstables<<tablewidget;
+        grdlayout->addWidget(tablewidget,0,0);
 
 
         tablewidget=new QTableWidget;
@@ -354,7 +360,7 @@ void MainWindow::createTable(){
          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
          tablewidget->setItem(5,i,tableitem);
         }
-         masstables<<tablewidget;
+         grdlayout->addWidget(tablewidget,0,1);
 
 
          tablewidget=new QTableWidget;
@@ -380,7 +386,7 @@ void MainWindow::createTable(){
           tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
           tablewidget->setItem(5,i,tableitem);
          }
-          masstables<<tablewidget;
+          grdlayout->addWidget(tablewidget,1,0);
 
 
           tablewidget=new QTableWidget;
@@ -406,7 +412,15 @@ void MainWindow::createTable(){
            tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
            tablewidget->setItem(5,i,tableitem);
           }
-           masstables<<tablewidget;
+          grdlayout->addWidget(tablewidget,1,1);
+
+          QLabel* lb=new QLabel("Блок "+QString::number(NumberbOfBlok+1));
+          lb->setStyleSheet("font-size:20px;margin-left:"+QString::number(scrollArea->width()/2.25)+"px;");
+
+          Vbox->addWidget(lb);
+          Vbox->addLayout(grdlayout);
+
+           masstables<<Vbox;
 }
 
 void MainWindow::saveCSV(){
