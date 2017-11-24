@@ -17,15 +17,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
    void createMap();
-   void createTables();
+   void createTable();
    void createBlok(int);
 
 private:
     Ui::MainWindow *ui;
+
     QWidget* MainWidget;
+    QWidget* MainTableWidget;
     QTableWidget* tablewidget;
+    QScrollArea *scrollArea;
+
     QMap<QString,int> alphabet;
     QMap<int,QString> NumbersAlphabet;
+    QList<QTableWidget*> masstables;
 
     QString text;
     QStringList bloks;
@@ -36,6 +41,7 @@ private:
 
     int n;
     int m;
+    int NumberbOfBlok;
 
         QString Lo,Ro;
         QString Rk1;
@@ -48,6 +54,7 @@ public slots:
     void Chiper();
     void Dechiper();
     void createKey2();
+    void showTables();
 
 };
 

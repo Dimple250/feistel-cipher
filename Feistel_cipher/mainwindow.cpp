@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //const QRect r = QApplication::desktop()->availableGeometry();
+    const QRect r = QApplication::desktop()->availableGeometry();
     //this->resize(r.width()*0.50, r.height()*0.80);
 
    ui->mainToolBar->hide();
@@ -54,11 +54,14 @@ MainWindow::MainWindow(QWidget *parent) :
      connect(ui->Save_Button,SIGNAL(clicked(bool)),SLOT(saveCSV()));
      connect(ui->Dechiper_Button,SIGNAL(clicked(bool)),SLOT(Dechiper()));
      connect(ui->Key1,SIGNAL(textChanged(QString)),SLOT(createKey2()));
+     connect(ui->Tableview_Button,SIGNAL(clicked(bool)),SLOT(showTables()));
 
-    //qDebug()<<text.length()/8;
 
+    MainTableWidget=new QWidget;
+    MainTableWidget->setMinimumSize(QSize(r.width()*0.44, r.height()*0.95));
 
-    //MainWidget=new QWidget(this);
+    scrollArea = new QScrollArea(MainTableWidget);
+    MainWidget=new QWidget;
     tablewidget=new QTableWidget;
     tablewidget->horizontalHeader()->hide();
     tablewidget->verticalHeader()->hide();
@@ -75,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //setCentralWidget(MainWidget);
 
     //Chiper();
+        //MainTableWidget->show();
 
 
 }
@@ -166,23 +170,22 @@ void MainWindow::Chiper(){
     key2=key2.toUpper();
 
     bloks.clear();
+    masstables.clear();
 
     for (int i = 0; i < text.count(); i+=8)
         bloks<<text.mid(i,8);
 
-    int KolBloks=0;
-    while(KolBloks<bloks.length()){
-      createBlok(KolBloks);
+     NumberbOfBlok=0;
+    while(NumberbOfBlok<bloks.length()){
+      createBlok(NumberbOfBlok);
+      createTable();
       Result+=R1+L1;
-      KolBloks++;
+      NumberbOfBlok++;
     }
 
     qDebug()<<Result;
     ui->textEdit_2->setText("");
-    ui->textEdit_2->setText(Result);
-    //saveCSV();
-    //saveCSV();
-    //createTables();
+    ui->textEdit_2->setText(Result);;
 }
 
 void MainWindow::Dechiper(){
@@ -217,8 +220,8 @@ void MainWindow::Dechiper(){
     //qDebug()<<"Ro:"<<Ro;
     //qDebug()<<"Lo:"<<Lo;
 
-    int KolBloks=0;
-    while(KolBloks<bloks.length()){
+    NumberbOfBlok=0;
+    while(NumberbOfBlok<bloks.length()){
         Rk1="";
         RLo="";
         R1="";
@@ -226,8 +229,8 @@ void MainWindow::Dechiper(){
         Lo="";
         Ro="";
         for(int i=0;i<4;i++){
-        Lo+=bloks[KolBloks][i];
-        Ro+=bloks[KolBloks][i+4];
+        Lo+=bloks[NumberbOfBlok][i];
+        Ro+=bloks[NumberbOfBlok][i+4];
         }
 
         for(int i=0;i<4;i++){
@@ -249,7 +252,7 @@ void MainWindow::Dechiper(){
             L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])%36];
       }
       Result+=L1+R1;
-      KolBloks++;
+      NumberbOfBlok++;
     }
 
     qDebug()<<Result;
@@ -270,30 +273,45 @@ void MainWindow::createKey2(){
     }
 }
 
-void MainWindow::createTables(){
-
-    int sum=0;
-
-    //QList<QTableWidget>* masstables;
+void MainWindow::showTables(){
 
     QGridLayout* grdlayout=new QGridLayout;
 
-    tablewidget=new QTableWidget;
-    tablewidget->horizontalHeader()->hide();
-    tablewidget->verticalHeader()->hide();
-    tablewidget->setRowCount(n);
-    tablewidget->setColumnCount(m);
-    tablewidget->setMaximumHeight(tableHeight);
-    tablewidget->setMinimumWidth(tableWidth);
+    for(int i=0;i<bloks.length();i++){
+        grdlayout->addWidget(masstables[i*4],i*2,0);
+        grdlayout->addWidget(masstables[(i*4)+1],i*2,1);
+        grdlayout->addWidget(masstables[(i*4)+2],(i*2)+1,0);
+        grdlayout->addWidget(masstables[(i*4)+3],(i*2)+1,1);
+    }
 
+        MainWidget->setLayout(grdlayout);
+
+            scrollArea->setWidget(MainWidget);
+            //scrollArea->setWidgetResizable(true);
+            scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+            scrollArea->resize(MainTableWidget->size());
+
+        MainTableWidget->show();
+
+
+}
+
+void MainWindow::createTable(){
+
+    int sum=0;
 
     QTableWidgetItem* tableitem=0;
 
+    QLabel* lb=new QLabel(""+NumberbOfBlok,scrollArea);
 
-    int KolBloks=0;
-    //while(KolBloks<bloks.length()){
-
-        createBlok(KolBloks);
+        tablewidget=new QTableWidget;
+        tablewidget->horizontalHeader()->hide();
+        tablewidget->verticalHeader()->hide();
+        tablewidget->setRowCount(n);
+        tablewidget->setColumnCount(m);
+        tablewidget->setMaximumHeight(tableHeight);
+        tablewidget->setMinimumWidth(tableWidth);
 
         for(int i=0;i<4;i++){
          tableitem=new QTableWidgetItem(Ro[i]+"");
@@ -310,7 +328,8 @@ void MainWindow::createTables(){
          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
          tablewidget->setItem(5,i,tableitem);
         }
-        //masstables->push_back(*tablewidget);
+        masstables<<tablewidget;
+
 
         tablewidget=new QTableWidget;
         tablewidget->horizontalHeader()->hide();
@@ -323,11 +342,11 @@ void MainWindow::createTables(){
         for(int i=0;i<4;i++){
          tableitem=new QTableWidgetItem(Lo[i]+"");
          tablewidget->setItem(0,i,tableitem);
-         tableitem=new QTableWidgetItem(key[i]+"");
+         tableitem=new QTableWidgetItem(Rk1[i]+"");
          tablewidget->setItem(1,i,tableitem);
-         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Ro[i]+""]));
+         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Lo[i]+""]));
          tablewidget->setItem(2,i,tableitem);
-         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[key[i]+""]));
+         tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Rk1[i]+""]));
          tablewidget->setItem(3,i,tableitem);
          sum=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
          tableitem=new QTableWidgetItem(QString("%1").arg(sum));
@@ -335,15 +354,59 @@ void MainWindow::createTables(){
          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
          tablewidget->setItem(5,i,tableitem);
         }
-         //masstables->push_back(*tablewidget);
+         masstables<<tablewidget;
 
-         //grdlayout->addWidget(masstables->data(),0,0);
-        // grdlayout->addWidget(masstables->data(),0,1);
 
-    //}
+         tablewidget=new QTableWidget;
+         tablewidget->horizontalHeader()->hide();
+         tablewidget->verticalHeader()->hide();
+         tablewidget->setRowCount(n);
+         tablewidget->setColumnCount(m);
+         tablewidget->setMaximumHeight(tableHeight);
+         tablewidget->setMinimumWidth(tableWidth);
 
-        MainWidget->setLayout(grdlayout);
+         for(int i=0;i<4;i++){
+          tableitem=new QTableWidgetItem(R1[i]+"");
+          tablewidget->setItem(0,i,tableitem);
+          tableitem=new QTableWidgetItem(key2[i]+"");
+          tablewidget->setItem(1,i,tableitem);
+          tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[R1[i]+""]));
+          tablewidget->setItem(2,i,tableitem);
+          tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[key2[i]+""]));
+          tablewidget->setItem(3,i,tableitem);
+          sum=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
+          tableitem=new QTableWidgetItem(QString("%1").arg(sum));
+          tablewidget->setItem(4,i,tableitem);
+          tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
+          tablewidget->setItem(5,i,tableitem);
+         }
+          masstables<<tablewidget;
 
+
+          tablewidget=new QTableWidget;
+          tablewidget->horizontalHeader()->hide();
+          tablewidget->verticalHeader()->hide();
+          tablewidget->setRowCount(n);
+          tablewidget->setColumnCount(m);
+          tablewidget->setMaximumHeight(tableHeight);
+          tablewidget->setMinimumWidth(tableWidth);
+
+          for(int i=0;i<4;i++){
+           tableitem=new QTableWidgetItem(Ro[i]+"");
+           tablewidget->setItem(0,i,tableitem);
+           tableitem=new QTableWidgetItem(RLo[i]+"");
+           tablewidget->setItem(1,i,tableitem);
+           tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[Ro[i]+""]));
+           tablewidget->setItem(2,i,tableitem);
+           tableitem=new QTableWidgetItem(QString("%1").arg(alphabet[RLo[i]+""]));
+           tablewidget->setItem(3,i,tableitem);
+           sum=(tablewidget->item(2,i)->text().toInt()+tablewidget->item(3,i)->text().toInt())%36;
+           tableitem=new QTableWidgetItem(QString("%1").arg(sum));
+           tablewidget->setItem(4,i,tableitem);
+           tableitem=new QTableWidgetItem(NumbersAlphabet[sum]);
+           tablewidget->setItem(5,i,tableitem);
+          }
+           masstables<<tablewidget;
 }
 
 void MainWindow::saveCSV(){
