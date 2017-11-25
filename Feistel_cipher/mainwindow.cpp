@@ -431,12 +431,16 @@ void MainWindow::saveCSV(){
     key2="праш";
     key2=key2.toUpper();
 
+    QString str = QFileDialog::getSaveFileName(0, "Save file", "", "*.csv");
+    if(str==""){
+        return;
+    }
+    str+=".csv";
+     QFile f(str);
+     if (!f.open(QIODevice::WriteOnly)) {
+                 // error message
+      } else {
 
-    QFile f("/home/deus/Desktop/Книга2.csv");
-
-        if( !f.open( QIODevice::WriteOnly ) )
-        {
-        }
             QTextStream ts( &f );
             QStringList strList;
 
@@ -563,5 +567,6 @@ void MainWindow::saveCSV(){
       NumberbOfBlok++;
     }
     f.close();
+   }
 
 }
