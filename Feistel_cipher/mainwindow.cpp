@@ -7,11 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     const QRect r = QApplication::desktop()->availableGeometry();
-    //this->resize(r.width()*0.50, r.height()*0.80);
+
+    n=6;
+    m=4;
 
    ui->mainToolBar->hide();
     //ui->menuBar-> ;
-    //ui->statusBar->hide();
 
 
     ui->Save_Button->setStyleSheet("QPushButton{"
@@ -39,10 +40,6 @@ MainWindow::MainWindow(QWidget *parent) :
                                     "color:rgb(255, 130, 41);"
                                     "}");
 
-
-    n=6;
-    m=4;
-
     createMap();
 
      text=("Старый_дом_стоял_в_тени."
@@ -57,7 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
      connect(ui->Tableview_Button,SIGNAL(clicked(bool)),SLOT(showTables()));
 
 
-    MainTableWidget=new QWidget;
+
+     MainTableWidget=new QWidget;
     MainTableWidget->setMinimumSize(QSize(r.width()*0.44, r.height()*0.95));
 
     scrollArea = new QScrollArea(MainTableWidget);
@@ -75,11 +73,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
         tableWidth = tablewidget->verticalHeader()->width() +
                               tablewidget->horizontalHeader()->length() + 2;
-
-    //setCentralWidget(MainWidget);
-
-    //Chiper();
-        //MainTableWidget->show();
 
 
 }
@@ -218,9 +211,6 @@ void MainWindow::Dechiper(){
     Ro+=bloks[0][i+4];
     }
 
-    //qDebug()<<"Ro:"<<Ro;
-    //qDebug()<<"Lo:"<<Lo;
-
     NumberbOfBlok=0;
     while(NumberbOfBlok<bloks.length()){
         Rk1="";
@@ -276,15 +266,9 @@ void MainWindow::createKey2(){
 
 void MainWindow::showTables(){
 
-    QGridLayout* grdlayout=new QGridLayout;
-
     QVBoxLayout* Vbox=new QVBoxLayout;
 
     for(int i=0;i<bloks.length();i++){
-       // grdlayout->addWidget(masstables[i*4],i*2,0);
-       // grdlayout->addWidget(masstables[(i*4)+1],i*2,1);
-        //grdlayout->addWidget(masstables[(i*4)+2],(i*2)+1,0);
-        //grdlayout->addWidget(masstables[(i*4)+3],(i*2)+1,1);
         Vbox->addLayout(masstables[i]);
     }
 
