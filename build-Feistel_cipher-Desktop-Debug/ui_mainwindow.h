@@ -76,7 +76,7 @@ public:
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(360, 40, 54, 17));
         QFont font1;
-        font1.setPointSize(12);
+        font1.setPointSize(11);
         font1.setBold(true);
         font1.setItalic(true);
         font1.setWeight(75);
@@ -107,6 +107,7 @@ public:
         Chiper_Button->setObjectName(QStringLiteral("Chiper_Button"));
         Chiper_Button->setGeometry(QRect(10, 220, 141, 41));
         QFont font3;
+        font3.setPointSize(10);
         font3.setBold(true);
         font3.setWeight(75);
         Chiper_Button->setFont(font3);
@@ -123,10 +124,8 @@ public:
         Tableview_Button->setObjectName(QStringLiteral("Tableview_Button"));
         Tableview_Button->setGeometry(QRect(310, 220, 141, 41));
         QFont font4;
-        font4.setFamily(QStringLiteral("Noto Sans"));
-        font4.setPointSize(10);
+        font4.setPointSize(9);
         font4.setBold(true);
-        font4.setItalic(false);
         font4.setWeight(75);
         Tableview_Button->setFont(font4);
         Tableview_Button->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"

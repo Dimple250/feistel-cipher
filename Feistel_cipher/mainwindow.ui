@@ -68,7 +68,7 @@ color: rgb(0, 0, 0);</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
@@ -92,7 +92,7 @@ color: rgb(0, 0, 0);</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
@@ -155,6 +155,7 @@ color: rgb(0, 0, 0);</string>
     </property>
     <property name="font">
      <font>
+      <pointsize>10</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -179,6 +180,7 @@ selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="font">
      <font>
+      <pointsize>10</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -202,10 +204,8 @@ selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="font">
      <font>
-      <family>Noto Sans</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
       <weight>75</weight>
-      <italic>false</italic>
       <bold>true</bold>
      </font>
     </property>
@@ -228,6 +228,7 @@ selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="font">
      <font>
+      <pointsize>10</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -250,7 +251,7 @@ selection-color: rgb(255, 130, 41);</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
