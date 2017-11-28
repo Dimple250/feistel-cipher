@@ -124,11 +124,17 @@ color: rgb(0, 0, 0);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(152, 255, 238);
-selection-color: rgb(255, 130, 41);</string>
+selection-color: rgb(255, 130, 41);
+</string>
     </property>
     <property name="currentText">
-     <string/>
+     <string>cxvxcvxc</string>
     </property>
+    <item>
+     <property name="text">
+      <string>cxvxcvxc</string>
+     </property>
+    </item>
    </widget>
    <widget class="QTextEdit" name="textEdit_2">
     <property name="geometry">
@@ -210,8 +216,7 @@ selection-color: rgb(255, 130, 41);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(152, 255, 238);
-</string>
+     <string notr="true">color: rgb(152, 255, 238);</string>
     </property>
     <property name="text">
      <string>Показать таблицы</string>

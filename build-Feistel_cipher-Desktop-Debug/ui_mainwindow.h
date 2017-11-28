@@ -97,7 +97,8 @@ public:
         font2.setWeight(75);
         Key2_ComboBox->setFont(font2);
         Key2_ComboBox->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
-"selection-color: rgb(255, 130, 41);"));
+"selection-color: rgb(255, 130, 41);\n"
+""));
         textEdit_2 = new QTextEdit(centralWidget);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setGeometry(QRect(10, 280, 601, 231));
@@ -128,8 +129,7 @@ public:
         font4.setBold(true);
         font4.setWeight(75);
         Tableview_Button->setFont(font4);
-        Tableview_Button->setStyleSheet(QLatin1String("color: rgb(152, 255, 238);\n"
-""));
+        Tableview_Button->setStyleSheet(QStringLiteral("color: rgb(152, 255, 238);"));
         Save_Button = new QPushButton(centralWidget);
         Save_Button->setObjectName(QStringLiteral("Save_Button"));
         Save_Button->setGeometry(QRect(460, 220, 141, 41));
@@ -173,7 +173,11 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         label->setText(QApplication::translate("MainWindow", "\320\232\320\273\321\216\321\2071", 0));
         label_2->setText(QApplication::translate("MainWindow", "\320\232\320\273\321\216\321\2072", 0));
-        Key2_ComboBox->setCurrentText(QString());
+        Key2_ComboBox->clear();
+        Key2_ComboBox->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "cxvxcvxc", 0)
+        );
+        Key2_ComboBox->setCurrentText(QApplication::translate("MainWindow", "cxvxcvxc", 0));
         Chiper_Button->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
         Dechiper_Button->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\321\210\320\270\321\204\321\200\320\276\320\262\320\260\321\202\321\214", 0));
         Tableview_Button->setText(QApplication::translate("MainWindow", "\320\237\320\276\320\272\320\260\320\267\320\260\321\202\321\214 \321\202\320\260\320\261\320\273\320\270\321\206\321\213", 0));
