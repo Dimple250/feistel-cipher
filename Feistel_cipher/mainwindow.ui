@@ -128,13 +128,8 @@ selection-color: rgb(255, 130, 41);
 </string>
     </property>
     <property name="currentText">
-     <string>cxvxcvxc</string>
+     <string/>
     </property>
-    <item>
-     <property name="text">
-      <string>cxvxcvxc</string>
-     </property>
-    </item>
    </widget>
    <widget class="QTextEdit" name="textEdit_2">
     <property name="geometry">

@@ -101,7 +101,7 @@ void MainWindow::createMap(){
     alphabet["Ы"]=28;alphabet["Ь"]=29;
     alphabet["Э"]=30;alphabet["Ю"]=31;
     alphabet["Я"]=32;alphabet["."]=33;
-    alphabet[","]=34;alphabet["_"]=35;
+    alphabet[","]=34;alphabet[" "]=35;
 
 
     NumbersAlphabet[0]="A";NumbersAlphabet[1]="Б";
@@ -121,7 +121,7 @@ void MainWindow::createMap(){
     NumbersAlphabet[28]="Ы";NumbersAlphabet[29]="Ь";
     NumbersAlphabet[30]="Э";NumbersAlphabet[31]="Ю";
     NumbersAlphabet[32]="Я";NumbersAlphabet[33]=".";
-    NumbersAlphabet[34]=",";NumbersAlphabet[35]="_";
+    NumbersAlphabet[34]=",";NumbersAlphabet[35]=" ";
 }
 
 void MainWindow::createBlok(int NumberbOfBlok){
@@ -154,6 +154,10 @@ void MainWindow::createBlok(int NumberbOfBlok){
 void MainWindow::Chiper(){
 
     text=ui->textEdit->toPlainText();
+    while(text.length()%8!=0){
+        text+=" ";
+    }
+
     Result="";
 
     text=text.toUpper();
@@ -166,8 +170,9 @@ void MainWindow::Chiper(){
     bloks.clear();
     masstables.clear();
 
-    for (int i = 0; i < text.count(); i+=8)
+    for (int i = 0; i < text.count(); i+=8){
         bloks<<text.mid(i,8);
+    }
 
      NumberbOfBlok=0;
     while(NumberbOfBlok<bloks.length()){
@@ -195,9 +200,9 @@ void MainWindow::Dechiper(){
     Result="";
 
     text=text.toUpper();
-    key="шарп";
+    key=ui->Key1->text();
     key=key.toUpper();
-    key2="праш";
+    key2=ui->Key2_ComboBox->currentText();
     key2=key2.toUpper();
 
     bloks.clear();
@@ -228,7 +233,7 @@ void MainWindow::Dechiper(){
             Rk1+=NumbersAlphabet[(alphabet[Lo[i]+""]+alphabet[key2[i]+""])%36];
         }
         for(int i=0;i<4;i++){
-            if(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""]<=0){
+            if(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""]<0){
                  R1+=NumbersAlphabet[(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""])+36];
             }else
             R1+=NumbersAlphabet[(alphabet[Ro[i]+""]-alphabet[Rk1[i]+""])%36];
@@ -237,7 +242,7 @@ void MainWindow::Dechiper(){
              RLo+=NumbersAlphabet[(alphabet[R1[i]+""]+alphabet[key[i]+""])%36];
         }
         for(int i=0;i<4;i++){
-            if(alphabet[Lo[i]+""]-alphabet[RLo[i]+""]<=0){
+            if(alphabet[Lo[i]+""]-alphabet[RLo[i]+""]<0){
                  L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])+36];
             }else
             L1+=NumbersAlphabet[(alphabet[Lo[i]+""]-alphabet[RLo[i]+""])%36];
